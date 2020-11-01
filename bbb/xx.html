@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.box{
+    width: 70%;
+    margin: 0 auto;
+}
+.content{
+    background-image: url(./images/space_bannerBig01.png);
+    height: 700px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: ease 1s;
+    margin-bottom: 10px;
+}
+.menu{
+    width: 100%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: center;
+    background-color: #313131;
+}
+.menu li{
+    margin-right: 10px;
+    width: 110px;
+    height: 60px;
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid #929292;
+    opacity: .5;
+}
+.menu li.active{
+    opacity: 1;    
+    transform: scale(1.15);
+    border: 2px solid red;
+}
+
+</style>
+<body>
+    <div class="box">
+        <div class="content"></div>
+        <ul class="menu">
+            <li class="a1 active"><img src="./images/space_bannerSma01.png" alt=""></li>
+            <li class="a2"><img src="./images/space_bannerSma02.png" alt=""></li>
+            <li class="a3"><img src="./images/space_bannerSma03.png" alt=""></li>
+        </ul>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var content = document.querySelector(".content");
+
+            var a1 = document.querySelector(".a1");
+            var a2 = document.querySelector(".a2");
+            var a3 = document.querySelector(".a3");
+
+            console.log(a1);
+            var index = 1 ; //紀錄頁數
+
+
+            //點擊換圖事件
+            function showMynu(){
+                clearInterval(time);
+                time = setInterval(gophot,3000);
+                content.style.backgroundImage = "url(./images/space_bannerBig01.png)";
+                a2.classList.remove("active");
+                a3.classList.remove("active");
+                a1.classList.toggle("active");
+                // console.log(this);
+            }
+            
+            function showMynu2(){
+                clearInterval(time);
+                time = setInterval(gophot,3000);
+                content.style.backgroundImage = "url(./images/space_bannerBig02.png)";
+                a1.classList.remove("active");
+                a3.classList.remove("active");
+                a2.classList.toggle("active");
+            }
+            
+            function showMynu3(){
+                clearInterval(time);
+                time = setInterval(gophot,3000);
+                content.style.backgroundImage = "url(./images/space_bannerBig03.png)";
+                a1.classList.remove("active");
+                a2.classList.remove("active");
+                a3.classList.toggle("active");
+
+            }
+            
+            // function cones(){
+            //     if(index < 3){
+            //         index++;
+            //     }else{
+            //         index = 1;
+            //     }
+            //     document.querySelector(".a" + index ).classList.toggle("active");
+            // }
+
+            //BANNER自動輪播大圖
+            function gophot(){
+                if(index < 3 ){
+                    index++;
+                }else{
+                    index = 1;
+                }
+                // content.style.backgroundImage = "url(./images/space_bannerBig0"+ index +".png)";
+                // // ('a' + index).classList.toggle("active");
+                // document.querySelector(".a" + index ).classList.toggle("active");
+                // content.style.backgroundImage = `url(./images/space_bannerBig0${index}.png)`;
+
+                content.style.backgroundImage = 'url(./images/space_bannerBig0' + index +'.png)';
+                document.querySelector('.a' + index).classList.remove("active");
+                // document.querySelectorAll('.menu li').forEach(ele => ele.classList.remove('active'));
+                document.querySelector('.a' + index).classList.add("active");
+
+            }
+            time = setInterval(gophot,2000);
+
+            a1.addEventListener("click",showMynu);
+            a2.addEventListener("click",showMynu2);
+            a3.addEventListener("click",showMynu3);
+
+
+
+        }//結束
+    </script>
+</body>
+</html>
